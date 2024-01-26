@@ -12,10 +12,12 @@ public class Player1Controller : MonoBehaviour
     bool isGrounded;
 
     private Coroutine coroutine;
+    private RotateAroundPivot rotateAroundPivot;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        rotateAroundPivot = GetComponentInChildren<RotateAroundPivot>();
     }
 
     // Update is called once per frame
@@ -25,6 +27,10 @@ public class Player1Controller : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            if (rotateAroundPivot.sweepShoot)
+            {
+                rotateAroundPivot.sweepShoot = false;
+            }
         }
 
     }

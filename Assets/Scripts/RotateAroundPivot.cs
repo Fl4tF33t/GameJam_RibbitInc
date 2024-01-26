@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class RotateAroundPivot : MonoBehaviour
@@ -6,9 +8,12 @@ public class RotateAroundPivot : MonoBehaviour
     public float rotationSpeed = 3f; // Adjust this value to change the rotation speed
     public float maxRotationAngle = 45f; // Adjust this value to change the maximum rotation angle
 
+    public bool sweepShoot = false;
+    public bool rotateClockwise = true;
+
     void Update()
     {
-        if (pivotPoint != null)
+        if (!sweepShoot)
         {
             if (Input.GetKey(KeyCode.A))
             {
@@ -20,10 +25,6 @@ public class RotateAroundPivot : MonoBehaviour
                 Debug.Log("Testing right");
                 transform.Rotate(Vector3.back, rotationSpeed * Time.deltaTime);
             }
-        }
-        else
-        {
-            Debug.LogError("Pivot point GameObject is not assigned!");
         }
     }
 
@@ -45,5 +46,27 @@ public class RotateAroundPivot : MonoBehaviour
         transform.localEulerAngles = eulerAngles;
     }
 
+    public void SweepShoot()
+    {
+        sweepShoot = true;
+        StartCoroutine(SweepShootCoroutine());
+    }
+
+    private IEnumerator SweepShootCoroutine()
+    {
+        while (sweepShoot)
+        {
+            if (rotateClockwise)
+            {
+                transform.RotateAround(pivotPoint.transform.position, Vector3.back, rotationSpeed * Time.deltaTime * 2);
+            }
+            else if (!rotateClockwise)
+            {
+                transform.RotateAround(pivotPoint.transform.position, Vector3.forward, rotationSpeed * Time.deltaTime * 2);
+
+            }
+            yield return null;
+        }
+    }
 }
 
