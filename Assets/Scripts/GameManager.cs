@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,6 +6,7 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    //PLAYER SHIT
     public enum Player
     {
         Player1,
@@ -14,14 +16,12 @@ public class GameManager : Singleton<GameManager>
     public Player currentPlayer;
 
     public bool isGameStarted = false;
-    bool isGamePaused = false;
 
-    public int playerScore = 0;
     private float elapsedTime = 0f;
     public float switchTime = 10f;
+
     public static int player1Score = 0;
     public static int player2Score = 0;
-
     public static float player1Time = 0f;
     public static float player2Time = 0f;
 
@@ -30,9 +30,17 @@ public class GameManager : Singleton<GameManager>
     public TextMeshProUGUI player1ScoreText;
     public TextMeshProUGUI player2ScoreText;
 
+
+    //Gameplay SHIT
+    public GameObject collectablePrefab;
+    public Transform[] spawnPoint;
+
+    //SceneShit
+    public event EventHandler OnGameEnd;
     private void Start()
     {
         currentPlayer = Player.Player1;
+        SpawnCollectable();
     }
 
     // Update is called once per frame
@@ -80,7 +88,12 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void Collectable(GameObject collectable)
+    void SpawnCollectable()
+    {
+        int index = UnityEngine.Random.Range(0, spawnPoint.Length);
+        Instantiate(collectablePrefab, spawnPoint[index].position, Quaternion.identity);
+    }
+    public void DestroyCollectable(GameObject collectable)
     {
         if (currentPlayer == Player.Player1)
         {
@@ -91,7 +104,7 @@ public class GameManager : Singleton<GameManager>
             player2Score += 1;
         }
         Destroy(collectable);
+        SpawnCollectable();
     }
-
 
 }
