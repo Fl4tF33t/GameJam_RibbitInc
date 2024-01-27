@@ -869,10 +869,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 359401157}
+    - target: {fileID: 6730437899549826778, guid: ffcfa336049903d40a9b1f8790257c91, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9808041
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730437899549826778, guid: ffcfa336049903d40a9b1f8790257c91, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730437899549826778, guid: ffcfa336049903d40a9b1f8790257c91, type: 3}
+      propertyPath: m_Color.r
+      value: 0.103773475
+      objectReference: {fileID: 0}
     - target: {fileID: 7433693803784178328, guid: ffcfa336049903d40a9b1f8790257c91, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 359401159}
+    - target: {fileID: 7476876894801766624, guid: ffcfa336049903d40a9b1f8790257c91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
