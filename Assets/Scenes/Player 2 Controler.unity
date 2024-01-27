@@ -1118,6 +1118,7 @@ GameObject:
   - component: {fileID: 1093853547}
   - component: {fileID: 1093853550}
   - component: {fileID: 1093853549}
+  - component: {fileID: 1093853551}
   - component: {fileID: 1093853548}
   m_Layer: 5
   m_Name: Breakable
@@ -1202,6 +1203,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1093853551}
+        m_TargetAssemblyTypeName: ButtonSpamDelay, Assembly-CSharp
+        m_MethodName: DisableButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1093853549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1240,6 +1253,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093853546}
   m_CullTransparentMesh: 1
+--- !u!114 &1093853551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093853546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d81e848e30d31346a184bafb980c387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 1
 --- !u!1 &1222983621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1434,6 +1460,7 @@ GameObject:
   - component: {fileID: 1331845212}
   - component: {fileID: 1331845215}
   - component: {fileID: 1331845214}
+  - component: {fileID: 1331845216}
   - component: {fileID: 1331845213}
   m_Layer: 5
   m_Name: ReverseGravity
@@ -1518,6 +1545,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1331845216}
+        m_TargetAssemblyTypeName: ButtonSpamDelay, Assembly-CSharp
+        m_MethodName: DisableButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1331845214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1556,6 +1595,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331845211}
   m_CullTransparentMesh: 1
+--- !u!114 &1331845216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331845211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d81e848e30d31346a184bafb980c387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 1
 --- !u!1 &1487555013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,6 +1619,7 @@ GameObject:
   - component: {fileID: 1487555014}
   - component: {fileID: 1487555017}
   - component: {fileID: 1487555016}
+  - component: {fileID: 1487555018}
   - component: {fileID: 1487555015}
   m_Layer: 5
   m_Name: SweepShoot
@@ -1651,6 +1704,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1487555018}
+        m_TargetAssemblyTypeName: ButtonSpamDelay, Assembly-CSharp
+        m_MethodName: DisableButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1487555016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1689,6 +1754,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487555013}
   m_CullTransparentMesh: 1
+--- !u!114 &1487555018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487555013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d81e848e30d31346a184bafb980c387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 1
 --- !u!1 &1490065833
 GameObject:
   m_ObjectHideFlags: 0
