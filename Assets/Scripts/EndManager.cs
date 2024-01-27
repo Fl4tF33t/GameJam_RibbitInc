@@ -10,9 +10,13 @@ public class EndManager : MonoBehaviour
 
     private void Awake()
     {
-        if (GameManager.Instance.player1Score==1)
+        if (GameManager.p2Win == true)
         {
-
+            Win2.gameObject.SetActive(true);
+        }
+        else if (GameManager.p2Win==false)
+        {
+            Win1.gameObject.SetActive(true);
         }
     }
     public void LoadMainMenu()
