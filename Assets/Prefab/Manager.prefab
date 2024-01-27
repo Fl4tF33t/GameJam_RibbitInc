@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGravityReversed: 0
+  wait: 5
 --- !u!114 &8024042238777193842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,10 +88,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPlayer: 0
   isGameStarted: 0
-  switchTime: 10
+  switchTime: 30
+  player1Score: 0
+  player2Score: 0
+  player1Time: 0
+  player2Time: 0
   player1TimerText: {fileID: 0}
   player2TimerText: {fileID: 0}
   player1ScoreText: {fileID: 0}
   player2ScoreText: {fileID: 0}
+  swapImage: {fileID: 0}
   collectablePrefab: {fileID: 140138262303981485, guid: b1320a51c01cd9b469d7d1d17ef2c94b, type: 3}
-  spawnPoint: []
+  baitPrefab: {fileID: 140138262303981485, guid: 5d68abbbd66cd614eb911fa48759fba6, type: 3}
+  spawnPoint:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  countdown: 3
+  countdownText: {fileID: 0}
+  amountLimit: 3
+  currentlySpawned: 0
