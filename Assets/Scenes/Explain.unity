@@ -468,8 +468,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015259, y: 88}
-  m_SizeDelta: {x: 1400, y: 556.9823}
+  m_AnchoredPosition: {x: -0.000015259, y: 56.91748}
+  m_SizeDelta: {x: 1400, y: 619.1473}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1018045894
 MonoBehaviour:
@@ -491,26 +491,27 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Welcome to "Game"!
+  m_text: 'Welcome to Leaf Me Alone!
 
 
     Grab a friend, becaue it is for two players!
     One of you is going to try and collect all the flies as fast as possible, while
-    the other is trying to stop the other with activating debuffs. After that you
-    change places and roles and try and beat the other players time.
+    the other is trying to stop the other with activating debuffs. After 30 seconds
+    you will have to swap places and try and do the same thing. If one of you collects
+    all 5 the other will have the reminder of the other players time to collect their
+    flies and if they can''t they will lose!
 
 
-    Player
-    1 will use A and D to aim which way the frog is jumping and Space to make it
-    jump. Player 2 will be with the mouse and activate different debuffs.
+    Player 1 will use A and D to aim
+    which way the frog is jumping and Space to make it jump. Player 2 will be with
+    the mouse and activate different debuffs.
 
 
-    Player
-    1 has to collect 5 flies.
+    Player 1 has to collect 5 flies.
 
 
-    To read what the debuffs do hover over them with
-    the mouse.'
+    To
+    read what the debuffs do hover over them with the mouse.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
