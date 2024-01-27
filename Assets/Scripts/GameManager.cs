@@ -36,6 +36,7 @@ public class GameManager : Singleton<GameManager>
     public Transform[] spawnPoint;
     public float countdown;
     public TextMeshProUGUI countdownText;
+    bool autoTurn = true;
 
     //SceneShit
     public event EventHandler OnGameEnd;
@@ -48,6 +49,64 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
+        CountDownPlayerSwitch();
+
+        player1TimerText.text = "P1 Time: " + player1Time.ToString();
+        player2TimerText.text = "P2 Time: " + player2Time.ToString();
+        player1ScoreText.text = "Score: " + player1Score.ToString();
+        player2ScoreText.text = "Score: " + player2Score.ToString();
+
+        if (isGameStarted)
+        {
+            AutoSwitch();
+
+            if(currentPlayer == Player.Player1)
+            {
+                if(player1Score < 5)
+                {
+                    player1Time += Time.deltaTime;
+                }
+                if(player1Score == 5)
+                {
+                    autoTurn = false; 
+                }
+            }
+            else if(currentPlayer == Player.Player2)
+            {
+                if (player2Score < 5)
+                {
+                    player2Time += Time.deltaTime;
+                }
+                if(player2Score == 5)
+                {
+                    if(player2Time < player1Time)
+                    {
+                        Debug.Log("Player 2 Wins");
+                    }
+                    else
+                    {
+                        Debug.Log("Player 1 Wins");
+                    }
+                }
+            }
+        }
+    }
+
+    void AutoSwitch()
+    {
+        if(autoTurn)
+        {
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime >= switchTime)
+            {
+                elapsedTime = 0f;
+                isGameStarted = false;
+                SwitchSides();
+            }
+        }
+    }   
+    void CountDownPlayerSwitch()
+    {
         if (!isGameStarted)
         {
             countdownText.transform.gameObject.SetActive(true);
@@ -59,35 +118,6 @@ public class GameManager : Singleton<GameManager>
             isGameStarted = true;
             countdownText.transform.gameObject.SetActive(false);
             countdown = 3;
-        }  
-
-        player1TimerText.text = "P1 Time: " + player1Time.ToString();
-        player2TimerText.text = "P2 Time: " + player2Time.ToString();
-        player1ScoreText.text = "Score: " + player1Score.ToString();
-        player2ScoreText.text = "Score: " + player2Score.ToString();
-        if (isGameStarted)
-        {
-            elapsedTime += Time.deltaTime;
-            if(elapsedTime >= switchTime)
-            {
-                elapsedTime = 0f;
-                isGameStarted = false;
-                SwitchSides();
-            }
-            if(currentPlayer == Player.Player1)
-            {
-                if(player1Score < 5)
-                {
-                    player1Time += Time.deltaTime;
-                }
-            }
-            else if(currentPlayer == Player.Player2)
-            {
-                if (player2Score < 5)
-                {
-                    player2Time += Time.deltaTime;
-                }
-            }
         }
     }
 
