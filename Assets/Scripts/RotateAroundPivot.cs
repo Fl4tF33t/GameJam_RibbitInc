@@ -10,6 +10,7 @@ public class RotateAroundPivot : MonoBehaviour
 
     public bool sweepShoot = false;
     public bool rotateClockwise = true;
+    public float sweepSpeed = 2f;
 
     void Update()
     {
@@ -44,6 +45,18 @@ public class RotateAroundPivot : MonoBehaviour
 
         eulerAngles.z = clampedEulerZ;
         transform.localEulerAngles = eulerAngles;
+
+        if(sweepShoot)
+        {
+            if (clampedAngle == -maxRotationAngle)
+            {
+                rotateClockwise = false;
+            }
+            else if (clampedAngle == maxRotationAngle)
+            {
+                rotateClockwise = true;
+            }
+        }
     }
 
     public void SweepShoot()
@@ -58,11 +71,11 @@ public class RotateAroundPivot : MonoBehaviour
         {
             if (rotateClockwise)
             {
-                transform.RotateAround(pivotPoint.transform.position, Vector3.back, rotationSpeed * Time.deltaTime * 2);
+                transform.RotateAround(pivotPoint.transform.position, Vector3.back, rotationSpeed * Time.deltaTime * sweepSpeed);
             }
             else if (!rotateClockwise)
             {
-                transform.RotateAround(pivotPoint.transform.position, Vector3.forward, rotationSpeed * Time.deltaTime * 2);
+                transform.RotateAround(pivotPoint.transform.position, Vector3.forward, rotationSpeed * Time.deltaTime * sweepSpeed);
 
             }
             yield return null;
