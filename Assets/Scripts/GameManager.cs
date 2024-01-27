@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -31,7 +32,8 @@ public class GameManager : Singleton<GameManager>
     public TextMeshProUGUI player2TimerText;
     public TextMeshProUGUI player1ScoreText;
     public TextMeshProUGUI player2ScoreText;
-    bool p2Win;
+    public Image swapImage;
+    public static bool p2Win;
 
     //Gameplay SHIT
     public GameObject collectablePrefab;
@@ -59,8 +61,8 @@ public class GameManager : Singleton<GameManager>
     {
         CountDownPlayerSwitch();
 
-        player1TimerText.text = "P1 Time: " + player1Time.ToString();
-        player2TimerText.text = "P2 Time: " + player2Time.ToString();
+        player1TimerText.text = "P1 Time: " + Mathf.Round(player1Time).ToString();
+        player2TimerText.text = "P2 Time: " + Mathf.Round(player2Time).ToString();
         player1ScoreText.text = "Score: " + player1Score.ToString();
         player2ScoreText.text = "Score: " + player2Score.ToString();
 
@@ -113,6 +115,7 @@ public class GameManager : Singleton<GameManager>
         {
             elapsedTime = 0f;
             isGameStarted = false;
+
             SwitchSides();
         }
     }   
@@ -121,6 +124,7 @@ public class GameManager : Singleton<GameManager>
         if (!isGameStarted)
         {
             countdownText.transform.gameObject.SetActive(true);
+            swapImage.gameObject.SetActive(true);
             countdown -= Time.deltaTime;
             countdownText.text = "Get Ready: " + countdown.ToString();
         }
@@ -128,6 +132,7 @@ public class GameManager : Singleton<GameManager>
         {
             isGameStarted = true;
             countdownText.transform.gameObject.SetActive(false);
+            swapImage.gameObject.SetActive(false);
             countdown = 3;
         }
     }
