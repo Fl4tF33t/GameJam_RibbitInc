@@ -161,8 +161,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivotPoint: {fileID: 5275689272163097583}
-  rotationSpeed: 300
+  rotationSpeed: 150
   maxRotationAngle: 70
+  sweepShoot: 0
+  rotateClockwise: 1
 --- !u!1 &5275689272163097583
 GameObject:
   m_ObjectHideFlags: 0
