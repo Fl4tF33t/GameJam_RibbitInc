@@ -21,6 +21,8 @@ public class Player1Controller : MonoBehaviour
 
     public Animator anim;
 
+    public GameObject visual;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();

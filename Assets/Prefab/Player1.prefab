@@ -166,6 +166,8 @@ MonoBehaviour:
   sweepShoot: 0
   rotateClockwise: 1
   sweepSpeed: 2
+  player1Controller: {fileID: 2571655953051954579}
+  visual: {fileID: 3377409780999225777}
 --- !u!1 &5275689272163097583
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +251,7 @@ MonoBehaviour:
   rotationSpeed: 5
   breakable: {fileID: 0}
   anim: {fileID: 8795994128870155917}
+  visual: {fileID: 5452570330192238109}
 --- !u!114 &-1204143736526980409
 MonoBehaviour:
   m_ObjectHideFlags: 0
