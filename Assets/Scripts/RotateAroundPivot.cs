@@ -11,6 +11,9 @@ public class RotateAroundPivot : MonoBehaviour
     public bool sweepShoot = false;
     public bool rotateClockwise = true;
     public float sweepSpeed = 2f;
+    public Player1Controller player1Controller;
+
+    public Transform visual;
 
     void Update()
     {
@@ -55,6 +58,31 @@ public class RotateAroundPivot : MonoBehaviour
             else if (clampedAngle == maxRotationAngle)
             {
                 rotateClockwise = true;
+            }
+        }
+        Debug.Log(clampedAngle);
+
+        if(clampedAngle > 0)
+        {
+            if(player1Controller.isGravityReversed)
+            {
+                visual.transform.rotation = Quaternion.Lerp(visual.transform.rotation, Quaternion.Euler(0, 180, 180), Time.deltaTime * rotationSpeed);
+            }
+            else
+            {
+                visual.transform.rotation = Quaternion.Lerp(visual.transform.rotation, Quaternion.Euler(0, 180, 0), Time.deltaTime * rotationSpeed);
+            }   
+            
+        }
+        else if(clampedAngle < 0)
+        {
+            if (player1Controller.isGravityReversed)
+            {
+                visual.transform.rotation = Quaternion.Lerp(visual.transform.rotation, Quaternion.Euler(0, 0, 180), Time.deltaTime * rotationSpeed);
+            }
+            else
+            {
+                visual.transform.rotation = Quaternion.Lerp(visual.transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * rotationSpeed);
             }
         }
     }
