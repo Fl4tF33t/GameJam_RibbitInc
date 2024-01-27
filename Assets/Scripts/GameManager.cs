@@ -22,10 +22,10 @@ public class GameManager : Singleton<GameManager>
     private float elapsedTime = 0f;
     public float switchTime = 10f;
 
-    public static int player1Score = 0;
-    public static int player2Score = 0;
-    public static float player1Time = 0f;
-    public static float player2Time = 0f;
+    public int player1Score = 0;
+    public int player2Score = 0;
+    public float player1Time = 0f;
+    public float player2Time = 0f;
 
     public TextMeshProUGUI player1TimerText;
     public TextMeshProUGUI player2TimerText;
