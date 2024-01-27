@@ -14,6 +14,9 @@ public class Player1Controller : MonoBehaviour
     private Coroutine coroutine;
     private RotateAroundPivot rotateAroundPivot;
 
+    public bool isGravityReversed = false;
+    public float rotationSpeed = 5f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -33,6 +36,16 @@ public class Player1Controller : MonoBehaviour
             }
         }
 
+        if (isGravityReversed)
+        {
+            // Rotate towards the desired rotation (180 degrees around the z-axis)
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 180), Time.deltaTime * rotationSpeed);
+        }
+        else
+        {
+            // Rotate towards the desired rotation (0 degrees around the z-axis)
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * rotationSpeed);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
