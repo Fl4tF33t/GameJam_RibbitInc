@@ -22,14 +22,13 @@ public class ReverseGravity : MonoBehaviour
 
     public void ReverseGravityNow()
     {
-        isGravityReversed = !isGravityReversed;
-        WaitForSeconds(wait);
-        isGravityReversed = !isGravityReversed;
-
+       StartCoroutine( WaitForSeconds(wait));   
     }
 
     IEnumerator WaitForSeconds(float seconds)
     {
+        isGravityReversed = !isGravityReversed;
         yield return new WaitForSeconds(seconds);
+        isGravityReversed = !isGravityReversed;
     }
 }
