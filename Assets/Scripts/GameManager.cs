@@ -17,7 +17,8 @@ public class GameManager : Singleton<GameManager>
     bool isGamePaused = false;
 
     public int playerScore = 0;
-
+    private float elapsedTime = 0f;
+    public float switchTime = 10f;
     public static int player1Score = 0;
     public static int player2Score = 0;
 
@@ -43,22 +44,27 @@ public class GameManager : Singleton<GameManager>
         player2ScoreText.text = "Score: " + player2Score.ToString();
         if (isGameStarted)
         {
+            elapsedTime += Time.deltaTime;
+            if(elapsedTime >= switchTime)
+            {
+                elapsedTime = 0f;
+                isGameStarted = false;
+                SwitchSides();
+            }
             if(currentPlayer == Player.Player1)
             {
-                player1Time += Time.deltaTime;
+                if(player1Score < 5)
+                {
+                    player1Time += Time.deltaTime;
+                }
             }
             else if(currentPlayer == Player.Player2)
             {
-                 player2Time += Time.deltaTime;
+                if (player2Score < 5)
+                {
+                    player2Time += Time.deltaTime;
+                }
             }
-        }
-        if (isGamePaused)
-        {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
         }
     }
 
