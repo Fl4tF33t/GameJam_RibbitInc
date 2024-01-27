@@ -33,6 +33,7 @@ public class GameManager : Singleton<GameManager>
 
     //Gameplay SHIT
     public GameObject collectablePrefab;
+    public GameObject baitPrefab;
     public Transform[] spawnPoint;
     public float countdown;
     public TextMeshProUGUI countdownText;
@@ -44,6 +45,9 @@ public class GameManager : Singleton<GameManager>
         currentPlayer = Player.Player1;
         SpawnCollectable();
     }
+
+    //Dexter Shit
+    public int currentlySpawned = 0;
 
     // Update is called once per frame
     void Update()
@@ -110,7 +114,27 @@ public class GameManager : Singleton<GameManager>
     void SpawnCollectable()
     {
         int index = UnityEngine.Random.Range(0, spawnPoint.Length);
+        currentlySpawned = index;
         Instantiate(collectablePrefab, spawnPoint[index].position, Quaternion.identity);
+    }
+
+    public void SpawnBait()
+    {
+        Debug.Log("button");
+        int index = UnityEngine.Random.Range(0, spawnPoint.Length);
+        while (index == currentlySpawned)
+        {
+            Debug.Log("while");
+            index = UnityEngine.Random.Range(0, spawnPoint.Length);
+            if (index != currentlySpawned)
+            {
+                Debug.Log("break");
+                break;
+            }
+        }
+        Debug.Log("spawn");
+        Instantiate(baitPrefab, spawnPoint[index].position, Quaternion.identity);
+
     }
     public void DestroyCollectable(GameObject collectable)
     {
