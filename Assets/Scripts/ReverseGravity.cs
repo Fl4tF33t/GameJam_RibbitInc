@@ -5,6 +5,7 @@ using UnityEngine;
 public class ReverseGravity : MonoBehaviour
 {
     [SerializeField] private bool isGravityReversed = false;
+    public float wait = 5f;
     void Update()
     {
 
@@ -22,5 +23,13 @@ public class ReverseGravity : MonoBehaviour
     public void ReverseGravityNow()
     {
         isGravityReversed = !isGravityReversed;
+        WaitForSeconds(wait);
+        isGravityReversed = !isGravityReversed;
+
+    }
+
+    IEnumerator WaitForSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
     }
 }
