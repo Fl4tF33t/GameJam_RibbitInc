@@ -189,6 +189,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7700230732873071365, guid: 65eb372a0fe15fa448cb1a20c0fcd2af, type: 3}
+      propertyPath: amountLimit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7700230732873071365, guid: 65eb372a0fe15fa448cb1a20c0fcd2af, type: 3}
       propertyPath: countdownText
       value: 
       objectReference: {fileID: 1068894831}

@@ -43,6 +43,8 @@ public class GameManager : Singleton<GameManager>
 
     //SceneShit
     public event Action<bool> OnGameEnd;
+
+    public int amountLimit;
     private void Start()
     {
         currentPlayer = Player.Player1;
@@ -68,11 +70,11 @@ public class GameManager : Singleton<GameManager>
 
             if(currentPlayer == Player.Player1)
             {
-                if(player1Score < 5)
+                if(player1Score < amountLimit)
                 {
                     player1Time += Time.deltaTime;
                 }
-                if(player1Score == 5)
+                if(player1Score == amountLimit)
                 {
                     autoTurn = false;
                     SwitchSides();
@@ -80,13 +82,13 @@ public class GameManager : Singleton<GameManager>
             }
             else if(currentPlayer == Player.Player2)
             {
-                if (player2Score == 5)
+                if (player2Score == amountLimit)
                 {
                     //you win
                     p2Win = true;
                     SceneManager.LoadScene("End");
                 }
-                if (player2Score < 5)
+                if (player2Score < amountLimit)
                 {
                     player2Time += Time.deltaTime;
                 }
