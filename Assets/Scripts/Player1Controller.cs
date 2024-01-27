@@ -14,6 +14,11 @@ public class Player1Controller : MonoBehaviour
     private Coroutine coroutine;
     private RotateAroundPivot rotateAroundPivot;
 
+    public bool isGravityReversed = false;
+    public float rotationSpeed = 5f;
+
+    public GameObject breakable = null;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -24,7 +29,7 @@ public class Player1Controller : MonoBehaviour
     void Update()
     {
         jump = jumpDirecrtion.position - transform.position;
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded && GameManager.Instance.isGameStarted)
         {
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
             if (rotateAroundPivot.sweepShoot)
@@ -33,17 +38,37 @@ public class Player1Controller : MonoBehaviour
             }
         }
 
+        if (isGravityReversed)
+        {
+            // Rotate towards the desired rotation (180 degrees around the z-axis)
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 180), Time.deltaTime * rotationSpeed);
+        }
+        else
+        {
+            // Rotate towards the desired rotation (0 degrees around the z-axis)
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * rotationSpeed);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         rb.velocity = Vector3.zero;
-        if (coroutine != null)
+        if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Plane"))
         {
-            StopCoroutine(coroutine);
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
+            coroutine = StartCoroutine(Grounded());
         }
-        coroutine = StartCoroutine(NotGrounded());
-        
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Platform"))
+        {
+            breakable = collision.gameObject;
+        }
     }
 
     private void OnCollisionExit(Collision collision)
@@ -51,9 +76,10 @@ public class Player1Controller : MonoBehaviour
         isGrounded = false;
     }
 
-    private IEnumerator NotGrounded()
+    private IEnumerator Grounded()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         isGrounded = true;
+
     }
 }

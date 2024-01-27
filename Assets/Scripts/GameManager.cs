@@ -34,6 +34,8 @@ public class GameManager : Singleton<GameManager>
     //Gameplay SHIT
     public GameObject collectablePrefab;
     public Transform[] spawnPoint;
+    public float countdown;
+    public TextMeshProUGUI countdownText;
 
     //SceneShit
     public event EventHandler OnGameEnd;
@@ -46,6 +48,19 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
+        if (!isGameStarted)
+        {
+            countdownText.transform.gameObject.SetActive(true);
+            countdown -= Time.deltaTime;
+            countdownText.text = "Get Ready: " + countdown.ToString();
+        }
+        if (countdown < 0)
+        {
+            isGameStarted = true;
+            countdownText.transform.gameObject.SetActive(false);
+            countdown = 3;
+        }  
+
         player1TimerText.text = "P1 Time: " + player1Time.ToString();
         player2TimerText.text = "P2 Time: " + player2Time.ToString();
         player1ScoreText.text = "Score: " + player1Score.ToString();
@@ -81,10 +96,14 @@ public class GameManager : Singleton<GameManager>
         if (currentPlayer == Player.Player1)
         {
             currentPlayer = Player.Player2;
+            DestroyExistingCol();
+            SpawnCollectable();
         }
         else
         {
             currentPlayer = Player.Player1;
+            DestroyExistingCol();
+            SpawnCollectable();
         }
     }
 
@@ -105,6 +124,15 @@ public class GameManager : Singleton<GameManager>
         }
         Destroy(collectable);
         SpawnCollectable();
+    }
+
+    private void DestroyExistingCol()
+    {
+        GameObject destroyCollectable = GameObject.FindGameObjectWithTag("Collectable");
+        if (destroyCollectable != null)
+        {
+            Destroy(destroyCollectable);
+        }
     }
 
 }

@@ -6,6 +6,13 @@ public class ReverseGravity : MonoBehaviour
 {
     [SerializeField] private bool isGravityReversed = false;
     public float wait = 5f;
+
+    Player1Controller player1Controller;
+
+    private void Start()
+    {
+        player1Controller = GameObject.Find("Player1").GetComponent<Player1Controller>();
+    }
     void Update()
     {
 
@@ -27,8 +34,10 @@ public class ReverseGravity : MonoBehaviour
 
     IEnumerator WaitForSeconds(float seconds)
     {
+        player1Controller.isGravityReversed = !player1Controller.isGravityReversed;
         isGravityReversed = !isGravityReversed;
         yield return new WaitForSeconds(seconds);
         isGravityReversed = !isGravityReversed;
+        player1Controller.isGravityReversed = !player1Controller.isGravityReversed;
     }
 }
