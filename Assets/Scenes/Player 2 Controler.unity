@@ -749,11 +749,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPlayer: 0
   isGameStarted: 0
-  playerScore: 0
+  switchTime: 10
   player1TimerText: {fileID: 2013231965}
   player2TimerText: {fileID: 426508831}
   player1ScoreText: {fileID: 2057888703}
   player2ScoreText: {fileID: 2051875272}
+  collectablePrefab: {fileID: 140138262303981485, guid: b1320a51c01cd9b469d7d1d17ef2c94b, type: 3}
+  spawnPoint: []
 --- !u!1 &493666612
 GameObject:
   m_ObjectHideFlags: 0
