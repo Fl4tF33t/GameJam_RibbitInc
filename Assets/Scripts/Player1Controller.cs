@@ -19,6 +19,8 @@ public class Player1Controller : MonoBehaviour
 
     public GameObject breakable = null;
 
+    public Animator anim;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -32,6 +34,7 @@ public class Player1Controller : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded && GameManager.Instance.isGameStarted)
         {
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            anim.SetBool("OnJump", true);
             if (rotateAroundPivot.sweepShoot)
             {
                 rotateAroundPivot.sweepShoot = false;
@@ -53,6 +56,8 @@ public class Player1Controller : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         rb.velocity = Vector3.zero;
+        anim.SetBool("OnJump", false);
+        anim.SetBool("OnLanding", true);
         if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Plane"))
         {
             if (coroutine != null)
@@ -74,6 +79,7 @@ public class Player1Controller : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         isGrounded = false;
+        anim.SetBool("OnLanding", false);
     }
 
     private IEnumerator Grounded()
