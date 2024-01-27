@@ -30,4 +30,16 @@ public class MakeBreakable : MonoBehaviour
             chosenPlatform.isBreakable = true;
         }
     }
+
+    public void Inactive(GameObject platform)
+    {
+        StartCoroutine(SetInactive(platform));
+    }
+
+    private IEnumerator SetInactive(GameObject platform)
+    {
+        platform.SetActive(false);
+        yield return new WaitForSeconds(5f);
+        platform.SetActive(true);
+    }
 }
