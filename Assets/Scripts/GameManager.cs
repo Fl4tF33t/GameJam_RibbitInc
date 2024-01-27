@@ -45,13 +45,15 @@ public class GameManager : Singleton<GameManager>
     bool autoTurn = true;
 
     //SceneShit
-    public event Action<bool> OnGameEnd;
-
+AudioSource audioSource;
+    public AudioSource buttonAudioSource;
+    public AudioClip audioClip;
     public int amountLimit;
     private void Start()
     {
         currentPlayer = Player.Player1;
         SpawnCollectable();
+        audioSource = GetComponent<AudioSource>();
     }
 
     //Dexter Shit
@@ -107,6 +109,11 @@ public class GameManager : Singleton<GameManager>
                 }
             }
         }
+    }
+
+    public void PlaySound()
+    {
+        buttonAudioSource.PlayOneShot(audioClip);
     }
 
     void AutoSwitch()
