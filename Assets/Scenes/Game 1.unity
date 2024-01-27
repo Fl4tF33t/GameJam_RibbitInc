@@ -478,6 +478,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7700230732873071365, guid: 65eb372a0fe15fa448cb1a20c0fcd2af, type: 3}
+      propertyPath: baitPrefab
+      value: 
+      objectReference: {fileID: 140138262303981485, guid: 5d68abbbd66cd614eb911fa48759fba6, type: 3}
+    - target: {fileID: 7700230732873071365, guid: 65eb372a0fe15fa448cb1a20c0fcd2af, type: 3}
       propertyPath: switchTime
       value: 30
       objectReference: {fileID: 0}
