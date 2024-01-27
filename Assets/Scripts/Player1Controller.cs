@@ -7,7 +7,7 @@ public class Player1Controller : MonoBehaviour
 {
     Rigidbody rb;
     public Transform jumpDirecrtion;
-    public float jumpForce = 10f;
+    public float jumpForce;
     Vector3 jump;
     bool isGrounded;
 
@@ -35,7 +35,17 @@ public class Player1Controller : MonoBehaviour
         jump = jumpDirecrtion.position - transform.position;
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded && GameManager.Instance.isGameStarted)
         {
-            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            GameObject bait = GameObject.FindGameObjectWithTag("Bait");
+            if (bait!=null)
+            {
+                Vector3 direction = (bait.transform.position - transform.position).normalized;
+                rb.AddForce(direction * 35f, ForceMode.Impulse);
+                Destroy(bait);
+            }
+            else if(bait == null)
+            {
+                rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            }
             anim.SetBool("OnJump", true);
             if (rotateAroundPivot.sweepShoot)
             {
