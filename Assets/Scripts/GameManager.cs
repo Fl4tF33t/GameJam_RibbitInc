@@ -72,25 +72,23 @@ public class GameManager : Singleton<GameManager>
                 }
                 if(player1Score == 5)
                 {
-                    autoTurn = false; 
+                    autoTurn = false;
+                    SwitchSides();
                 }
             }
             else if(currentPlayer == Player.Player2)
             {
+                if (player2Score == 5)
+                {
+                    //you win
+                }
                 if (player2Score < 5)
                 {
                     player2Time += Time.deltaTime;
                 }
-                if(player2Score == 5)
+                if(!autoTurn && player2Time > player1Time)
                 {
-                    if(player2Time < player1Time)
-                    {
-                        Debug.Log("Player 2 Wins");
-                    }
-                    else
-                    {
-                        Debug.Log("Player 1 Wins");
-                    }
+                    //loose the game
                 }
             }
         }
