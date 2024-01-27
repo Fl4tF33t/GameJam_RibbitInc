@@ -22,10 +22,10 @@ public class GameManager : Singleton<GameManager>
     private float elapsedTime = 0f;
     public float switchTime = 10f;
 
-    public static int player1Score = 0;
-    public static int player2Score = 0;
-    public static float player1Time = 0f;
-    public static float player2Time = 0f;
+    public int player1Score = 0;
+    public int player2Score = 0;
+    public float player1Time = 0f;
+    public float player2Time = 0f;
 
     public TextMeshProUGUI player1TimerText;
     public TextMeshProUGUI player2TimerText;
@@ -66,7 +66,10 @@ public class GameManager : Singleton<GameManager>
 
         if (isGameStarted)
         {
-            AutoSwitch();
+            if(autoTurn)
+            {
+                AutoSwitch();
+            }
 
             if(currentPlayer == Player.Player1)
             {
@@ -77,6 +80,7 @@ public class GameManager : Singleton<GameManager>
                 if(player1Score == amountLimit)
                 {
                     autoTurn = false;
+                    isGameStarted = false;
                     SwitchSides();
                 }
             }
@@ -92,7 +96,7 @@ public class GameManager : Singleton<GameManager>
                 {
                     player2Time += Time.deltaTime;
                 }
-                if(!autoTurn && player2Time > player1Time)
+                if(autoTurn == false && player2Time > player1Time)
                 {
                     p2Win = false;
                     SceneManager.LoadScene("End");
@@ -104,15 +108,12 @@ public class GameManager : Singleton<GameManager>
 
     void AutoSwitch()
     {
-        if(autoTurn)
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime >= switchTime)
         {
-            elapsedTime += Time.deltaTime;
-            if (elapsedTime >= switchTime)
-            {
-                elapsedTime = 0f;
-                isGameStarted = false;
-                SwitchSides();
-            }
+            elapsedTime = 0f;
+            isGameStarted = false;
+            SwitchSides();
         }
     }   
     void CountDownPlayerSwitch()
