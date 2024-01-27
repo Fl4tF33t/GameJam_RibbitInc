@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -29,7 +31,7 @@ public class GameManager : Singleton<GameManager>
     public TextMeshProUGUI player2TimerText;
     public TextMeshProUGUI player1ScoreText;
     public TextMeshProUGUI player2ScoreText;
-
+    bool p2Win;
 
     //Gameplay SHIT
     public GameObject collectablePrefab;
@@ -40,7 +42,9 @@ public class GameManager : Singleton<GameManager>
     bool autoTurn = true;
 
     //SceneShit
-    public event EventHandler OnGameEnd;
+    public event Action<bool> OnGameEnd;
+
+    public int amountLimit;
     private void Start()
     {
         currentPlayer = Player.Player1;
@@ -66,11 +70,11 @@ public class GameManager : Singleton<GameManager>
 
             if(currentPlayer == Player.Player1)
             {
-                if(player1Score < 5)
+                if(player1Score < amountLimit)
                 {
                     player1Time += Time.deltaTime;
                 }
-                if(player1Score == 5)
+                if(player1Score == amountLimit)
                 {
                     autoTurn = false;
                     SwitchSides();
@@ -78,16 +82,20 @@ public class GameManager : Singleton<GameManager>
             }
             else if(currentPlayer == Player.Player2)
             {
-                if (player2Score == 5)
+                if (player2Score == amountLimit)
                 {
                     //you win
+                    p2Win = true;
+                    SceneManager.LoadScene("End");
                 }
-                if (player2Score < 5)
+                if (player2Score < amountLimit)
                 {
                     player2Time += Time.deltaTime;
                 }
                 if(!autoTurn && player2Time > player1Time)
                 {
+                    p2Win = false;
+                    SceneManager.LoadScene("End");
                     //loose the game
                 }
             }
