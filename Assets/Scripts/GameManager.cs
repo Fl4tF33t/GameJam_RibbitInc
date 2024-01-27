@@ -1,38 +1,97 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    public enum Player
+    {
+        Player1,
+        Player2
+    }
+
+    public Player currentPlayer;
+
     public bool isGameStarted = false;
-    public float timer = 0f;
+    bool isGamePaused = false;
+
     public int playerScore = 0;
+    private float elapsedTime = 0f;
+    public float switchTime = 10f;
+    public static int player1Score = 0;
+    public static int player2Score = 0;
 
-    public float player1Time = 0f;
-    public float player2Time = 0f;
+    public static float player1Time = 0f;
+    public static float player2Time = 0f;
 
+    public TextMeshProUGUI player1TimerText;
+    public TextMeshProUGUI player2TimerText;
+    public TextMeshProUGUI player1ScoreText;
+    public TextMeshProUGUI player2ScoreText;
+
+    private void Start()
+    {
+        currentPlayer = Player.Player1;
+    }
 
     // Update is called once per frame
     void Update()
     {
+        player1TimerText.text = "P1 Time: " + player1Time.ToString();
+        player2TimerText.text = "P2 Time: " + player2Time.ToString();
+        player1ScoreText.text = "Score: " + player1Score.ToString();
+        player2ScoreText.text = "Score: " + player2Score.ToString();
         if (isGameStarted)
         {
-            if(playerScore != 5)
+            elapsedTime += Time.deltaTime;
+            if(elapsedTime >= switchTime)
             {
-                timer += Time.deltaTime; // Time.deltaTime is the time between frames
-            }  
-            else if (playerScore == 5)
-            {
-                player1Time = timer;
-                timer = 0f;
-                playerScore = 0;
+                elapsedTime = 0f;
                 isGameStarted = false;
-                Debug.Log("Player 1 Wins!");
+                SwitchSides();
             }
-        }   
+            if(currentPlayer == Player.Player1)
+            {
+                if(player1Score < 5)
+                {
+                    player1Time += Time.deltaTime;
+                }
+            }
+            else if(currentPlayer == Player.Player2)
+            {
+                if (player2Score < 5)
+                {
+                    player2Time += Time.deltaTime;
+                }
+            }
+        }
     }
 
+    public void SwitchSides()
+    {
+        if (currentPlayer == Player.Player1)
+        {
+            currentPlayer = Player.Player2;
+        }
+        else
+        {
+            currentPlayer = Player.Player1;
+        }
+    }
 
+    public void Collectable(GameObject collectable)
+    {
+        if (currentPlayer == Player.Player1)
+        {
+            player1Score += 1;
+        }
+        else if(currentPlayer == Player.Player2)
+        {
+            player2Score += 1;
+        }
+        Destroy(collectable);
+    }
 
 
 }
