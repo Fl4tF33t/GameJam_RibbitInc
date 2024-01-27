@@ -17,14 +17,14 @@ public class Breakable : MonoBehaviour
         isBreakable = false;
     }
 
-    void OnCollisionStay(Collision collision)
-    {
-        if (isBreakable && collision.gameObject.CompareTag("Player"))
-        {
-            // Platform is breakable, perform breaking logic here
-            makeBreakable.Inactive(gameObject);
-        }
-    }
+    //void OnCollisionStay(Collision collision)
+    //{
+    //    if (isBreakable && collision.gameObject.CompareTag("Player"))
+    //    {
+    //        // Platform is breakable, perform breaking logic here
+    //        makeBreakable.Inactive(gameObject);
+    //    }
+    //}
 
     /*void BreakPlatform()
     {

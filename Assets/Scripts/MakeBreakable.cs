@@ -6,9 +6,12 @@ using UnityEngine.UI;
 public class MakeBreakable : MonoBehaviour
 {
     public List<GameObject> platformsList;
+    Player1Controller player1Controller;
 
     private void Start()
     {
+        player1Controller = GameObject.Find("Player1").GetComponent<Player1Controller>();
+
         platformsList = new List<GameObject>();
 
         GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
@@ -21,19 +24,7 @@ public class MakeBreakable : MonoBehaviour
 
     public void MakeOneBreakable()
     {
-        int random = Random.Range(0, platformsList.Count);
-
-        Breakable chosenPlatform = platformsList[random].GetComponent<Breakable>();
-
-        if (chosenPlatform != null)
-        {
-            chosenPlatform.isBreakable = true;
-        }
-    }
-
-    public void Inactive(GameObject platform)
-    {
-        StartCoroutine(SetInactive(platform));
+        StartCoroutine(SetInactive(player1Controller.breakable));
     }
 
     private IEnumerator SetInactive(GameObject platform)
