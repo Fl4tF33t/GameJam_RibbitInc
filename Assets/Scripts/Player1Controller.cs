@@ -23,6 +23,9 @@ public class Player1Controller : MonoBehaviour
 
     public GameObject visual;
 
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -47,6 +50,7 @@ public class Player1Controller : MonoBehaviour
                 rb.AddForce(jump * jumpForce, ForceMode.Impulse);
             }
             anim.SetBool("OnJump", true);
+            audioSource.PlayOneShot(audioClip);
             if (rotateAroundPivot.sweepShoot)
             {
                 rotateAroundPivot.sweepShoot = false;

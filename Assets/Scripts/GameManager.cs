@@ -33,6 +33,7 @@ public class GameManager : Singleton<GameManager>
     public TextMeshProUGUI player1ScoreText;
     public TextMeshProUGUI player2ScoreText;
     public Image swapImage;
+    public Image getReady;
     public static bool p2Win;
 
     //Gameplay SHIT
@@ -124,14 +125,22 @@ public class GameManager : Singleton<GameManager>
         if (!isGameStarted)
         {
             countdownText.transform.gameObject.SetActive(true);
-            swapImage.gameObject.SetActive(true);
+            if(player1Time < 5)
+            {
+                getReady.gameObject.SetActive(true);
+            }
+            else
+            {
+                swapImage.gameObject.SetActive(true);
+            }
             countdown -= Time.deltaTime;
-            countdownText.text = "Get Ready: " + countdown.ToString();
+            countdownText.text = "Get Ready: " + Mathf.Round(countdown).ToString();
         }
         if (countdown < 0)
         {
             isGameStarted = true;
             countdownText.transform.gameObject.SetActive(false);
+            getReady.gameObject.SetActive(false);
             swapImage.gameObject.SetActive(false);
             countdown = 3;
         }
