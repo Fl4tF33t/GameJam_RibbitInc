@@ -456,7 +456,7 @@ MonoBehaviour:
   m_text: "Welcome to Leaf Me Alone!\r\n\r\nGrab a friend, because this game is for
     two players! One of you will try to collect all the flies as fast as possible,
     while the other one sabotages by activating debuffs. Every 30 seconds you will
-    swap places until one of you has successfully collected all 5 flies. If Player
+    swap places until one of you has successfully collected all 3 flies. If Player
     1 collects all the flies first, Player 2 gets to try one more time to beat them.
     \r\n\r\nPlayer 1 will start collecting flies by using A and D to aim which way
     the frog jumps and Space to trigger the jump. Player 2 uses the mouse to activate
